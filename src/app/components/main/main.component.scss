@@ -1,14 +1,19 @@
 .main-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100%;
     width: 100%;
+
+    .header-container {
+        width: 100%;
+    }
 
     .body-section {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0 64px;
+        width: 1240px;
         height: calc(100vh - 70px);
 
         .filters {
@@ -20,14 +25,16 @@
 
         .cards-container {
             display: flex;
+            justify-content: center;
             height: calc(100vh - 112px);
+            width: 100%;
+            overflow-y: scroll;
 
             .cards-box {
                 display: flex;
                 justify-content: space-between;
                 flex-wrap: wrap;
-                overflow-y: scroll;
-                row-gap: 16px;
+                gap: 16px;
             }
         }
     }

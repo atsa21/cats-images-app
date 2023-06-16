@@ -54,7 +54,7 @@ export class BreedsFiltersComponent {
     } else {
       this.breedsSelected = this.breedsSelected.filter((el: Breed) => el.id !== breed.id);
     }
-    this.filtersControl.reset();
+    this.removeValue();
     this.breedsEmit.emit(this.breedsSelected);
   }
 
