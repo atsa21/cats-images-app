@@ -13,11 +13,12 @@ export class FiltersComponent implements OnInit {
   breeds: Breed[] = [];
   breedsSelected: Breed[] = [];
   limits: number[] = [10, 20, 40];
+  removeFilterSubject: Subject<Breed[]> = new Subject<Breed[]>();
+  private destroy: Subject<boolean> = new Subject<boolean>();
 
   @Output() breedsEmitter = new EventEmitter<Breed[]>();
   @Output() allBreedsEmitter = new EventEmitter<string>();
   @Output() limitSelected = new EventEmitter<number>();
-  private destroy: Subject<boolean> = new Subject<boolean>();
 
   constructor(private catService: CatsService) {}
 
@@ -46,6 +47,7 @@ export class FiltersComponent implements OnInit {
 
   removeBreed(breedId: string): void {
     this.breedsSelected = this.breedsSelected.filter((item: Breed) => item.id !== breedId);
+    this.removeFilterSubject.next(this.breedsSelected);
   }
 
 }

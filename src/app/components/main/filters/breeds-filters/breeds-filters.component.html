@@ -1,15 +1,9 @@
-<!-- <mat-select #select [formControl]="filtersControl" placeholder="Breeds" multiple>
-    <mat-option #allSelected (click)="toggleAllSelection()" value="all">Select All</mat-option>
-    <mat-option *ngFor="let breed of breeds" [value]="breed.id" (click)="toggleOneOption()">
-        {{ breed.name }}
-    </mat-option>
-</mat-select> -->
 <mat-form-field *ngIf="breeds" class="breeds-filters" appearance="outline" floatLabel="always">
-    <mat-label>Select Breeds</mat-label>
+    <mat-label>Breeds</mat-label>
     <input
         type="text"
         matInput
-        placeholder="Select breed" 
+        placeholder="Select name of breed" 
         [formControl]="filtersControl"
         [matAutocomplete]="auto"
         (keyup)="filterPredictions()"

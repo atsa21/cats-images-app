@@ -2,6 +2,7 @@ import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core
 import { Breed } from 'src/app/models/breed.interface';
 import { MatSelect } from '@angular/material/select';
 import { FormControl } from '@angular/forms';
+import { Subject, Observable, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-breeds-filters',
@@ -12,13 +13,24 @@ export class BreedsFiltersComponent {
 
   @ViewChild('select') select!: MatSelect;
   @Input() breeds!: Breed[];
+  @Input() removeFilterEvent!: Observable<Breed[]>;
 
   filteredBreeds!: Breed[];
   filtersControl = new FormControl();
   breedsSelected: Breed[] = [];
   breedsSelectedIds: string[] = [];
+  private destroy: Subject<boolean> = new Subject<boolean>();
 
   @Output() breedsEmit = new EventEmitter<Breed[]>();
+
+  ngOnInit(): void {
+    if(this.removeFilterEvent) {
+      this.removeFilterEvent.pipe(takeUntil(this.destroy)).subscribe((res: Breed[]) => {
+        this.breedsSelected = res;
+        this.breedsEmit.emit(this.breedsSelected);
+      })
+    }
+  }
 
   filterPredictions(): void {
     this.filteredBreeds = this.breeds.filter((item: Breed) => item.name.toLowerCase().includes(this.filtersControl.value));
@@ -35,7 +47,6 @@ export class BreedsFiltersComponent {
     this.breedsSelected.push(this.filtersControl.value);
     this.filtersControl.reset();
     this.breedsEmit.emit(this.breedsSelected);
-    console.log(this.breedsSelected);
   }
 
   isChecked(breed: Breed): boolean {

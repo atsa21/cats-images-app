@@ -1,5 +1,5 @@
 <form *ngIf="breeds && limits" class="filters-box">
-    <app-breeds-filters class="filter" [breeds]="breeds" (breedsEmit)="setBreeds($event)"></app-breeds-filters>
+    <app-breeds-filters class="filter" [breeds]="breeds" [removeFilterEvent]="removeFilterSubject.asObservable()" (breedsEmit)="setBreeds($event)"></app-breeds-filters>
     <app-limit-filters class="filter" [limits]="limits" (limitSelected)="setLimit($event)"></app-limit-filters>
 </form>
 <div class="filters-selected-box">
