@@ -32,19 +32,28 @@ export class BreedsFiltersComponent {
     }
   }
 
+  removeValue(): void {
+    this.filtersControl.reset();
+    this.filteredBreeds = this.breeds;
+  }
+
   filterPredictions(): void {
     this.filteredBreeds = this.breeds.filter((item: Breed) => item.name.toLowerCase().includes(this.filtersControl.value));
   }
 
   selectAll(): void {
     this.breedsSelected.length = 0;
-    this.filteredBreeds = this.breeds;
-    this.filtersControl.reset();
+    this.removeValue();
     this.breedsEmit.emit(this.breedsSelected);
   }
 
-  selectBreed(): void {
-    this.breedsSelected.push(this.filtersControl.value);
+  selectBreed(breed: Breed): void {
+    const isValueSelected = this.isChecked(breed);
+    if(!isValueSelected) {
+      this.breedsSelected.push(this.filtersControl.value);
+    } else {
+      this.breedsSelected = this.breedsSelected.filter((el: Breed) => el.id !== breed.id);
+    }
     this.filtersControl.reset();
     this.breedsEmit.emit(this.breedsSelected);
   }

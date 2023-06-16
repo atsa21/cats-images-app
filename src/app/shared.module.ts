@@ -8,6 +8,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatAutocompleteModule,
     MatChipsModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -32,7 +34,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatAutocompleteModule,
     MatChipsModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule
   ]
 })
 export class SharedModule { }

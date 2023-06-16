@@ -37,6 +37,7 @@ export class FiltersComponent implements OnInit {
       this.breedsSelected = breedsSelected;
       this.breedsEmitter.emit(breedsSelected);
     } else {
+      this.breedsSelected.length = 0;
       this.allBreedsEmitter.emit();
     }
   }

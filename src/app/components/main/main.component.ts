@@ -48,7 +48,6 @@ export class MainComponent implements OnInit {
   getAllCats(): void {
     this.isLoading = true;
     this.catsService.getAllCats(this.limit).pipe(takeUntil(this.destroy)).subscribe((res: any) => {
-      console.log(res);
       this.cats = res;
       this.isLoading = false;
     })
@@ -59,7 +58,6 @@ export class MainComponent implements OnInit {
       this.isLoading = true;
       const breedsSelectedIds = this.breedsSelected.map(el => el.id);
       this.catsService.getCatsByBreeds(this.limit, breedsSelectedIds).pipe(takeUntil(this.destroy)).subscribe((res: any) => {
-        console.log(res);
         this.cats = res;
         this.isLoading = false;
       })
