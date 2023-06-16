@@ -13,6 +13,7 @@
     </button>
     <mat-autocomplete #auto="matAutocomplete">
         <mat-option class="breed-option" value="all" (click)="selectAll()">All Breeds</mat-option>
+        <mat-divider></mat-divider>
         <mat-option class="breed-option" *ngFor="let breed of filteredBreeds || breeds" [value]="breed" (click)="selectBreed(breed)">
             <mat-checkbox [checked]="isChecked(breed)">{{ breed.name }}</mat-checkbox>
         </mat-option>

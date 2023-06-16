@@ -9,6 +9,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatChipsModule,
     MatIconModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -35,7 +37,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatChipsModule,
     MatIconModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule
   ]
 })
 export class SharedModule { }
