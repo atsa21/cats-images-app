@@ -7,6 +7,7 @@ Node version 18.16.0.
 ## Site
 
 Navigate to [Cats Images App](https://cats-img-app.web.app/) to see deployed app.
+![image](https://github.com/atsa21/cats-images-app/assets/104850911/f039baaa-8aa2-462e-83ed-e4fd19617da6)
 
 ## How to install
 
