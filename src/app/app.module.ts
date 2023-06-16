@@ -6,17 +6,25 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
 import { CatsCardComponent } from './components/main/cats-card/cats-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './components/main/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared.module';
+import { FiltersComponent } from './components/main/filters/filters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    CatsCardComponent
+    CatsCardComponent,
+    HeaderComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

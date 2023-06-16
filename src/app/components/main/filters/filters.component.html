@@ -1,0 +1,10 @@
+<div>
+    <form>
+        <mat-select #select [formControl]="filters" placeholder="Breeds" multiple>
+            <mat-option #allSelected (click)="toggleAllSelection()" value="all">Select All</mat-option>
+            <mat-option *ngFor="let breed of breeds" [value]="breed.id" (click)="toggleOneOption()">
+                {{breed.name}}
+            </mat-option>
+        </mat-select>
+    </form>
+</div>

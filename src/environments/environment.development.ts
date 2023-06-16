@@ -1,5 +1,6 @@
 export const environment = {
     production: true,
+    apiCatsKey: "live_mBgorTBKXQq4dO5skEhOz2RgMLc5UHqur1kNCnze0Bqowy644ExkwoQttqImXWNV",
     firebase: {
         apiKey: "AIzaSyDqCUWSqcX0jwkKxTnvv5lpCIBcdHFVtgc",
         authDomain: "cats-img-app.firebaseapp.com",

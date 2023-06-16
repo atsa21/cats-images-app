@@ -1,1 +1,9 @@
-<p>main works!</p>
+<div class="main-container">
+    <app-header></app-header>
+    <div>
+        <app-filters [breeds]="breeds" (filtersSelected)="setFilters($event)"></app-filters>
+        <section>
+            <app-cats-card></app-cats-card>
+        </section>
+    </div>
+</div>
