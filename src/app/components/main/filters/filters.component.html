@@ -1,10 +1,14 @@
-<div>
-    <form>
-        <mat-select #select [formControl]="filters" placeholder="Breeds" multiple>
-            <mat-option #allSelected (click)="toggleAllSelection()" value="all">Select All</mat-option>
-            <mat-option *ngFor="let breed of breeds" [value]="breed.id" (click)="toggleOneOption()">
-                {{breed.name}}
-            </mat-option>
-        </mat-select>
-    </form>
+<form *ngIf="breeds && limits" class="filters-box">
+    <app-breeds-filters class="filter" [breeds]="breeds" (breedsEmit)="setBreeds($event)"></app-breeds-filters>
+    <app-limit-filters class="filter" [limits]="limits" (limitSelected)="setLimit($event)"></app-limit-filters>
+</form>
+<div class="filters-selected-box">
+    <mat-chip-listbox *ngIf="breedsSelected && breedsSelected.length" aria-label="Breed filters selected">
+        <mat-chip-row *ngFor="let breed of breedsSelected" (click)="removeBreed(breed.id)">
+            {{ breed.name }}
+            <button matChipRemove (click)="removeBreed(breed.id)">
+              <mat-icon>cancel</mat-icon>
+            </button>
+        </mat-chip-row>
+    </mat-chip-listbox>
 </div>

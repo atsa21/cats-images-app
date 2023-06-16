@@ -10,6 +10,8 @@ import { HeaderComponent } from './components/main/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared.module';
 import { FiltersComponent } from './components/main/filters/filters.component';
+import { BreedsFiltersComponent } from './components/main/filters/breeds-filters/breeds-filters.component';
+import { LimitFiltersComponent } from './components/main/filters/limit-filters/limit-filters.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { FiltersComponent } from './components/main/filters/filters.component';
     MainComponent,
     CatsCardComponent,
     HeaderComponent,
-    FiltersComponent
+    FiltersComponent,
+    BreedsFiltersComponent,
+    LimitFiltersComponent
   ],
   imports: [
     BrowserModule,

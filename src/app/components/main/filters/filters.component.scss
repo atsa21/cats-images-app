@@ -1,0 +1,24 @@
+.filters-box {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 12px;
+
+    .filter {
+        display: flex;
+    }
+}
+
+.filters-selected-box {
+    display: flex;
+    justify-content: flex-end;
+
+    .filter-buttons {
+        display: flex;
+        gap: 16px;
+
+        .filt-btn {
+            padding: 12px;
+        }
+    }
+}

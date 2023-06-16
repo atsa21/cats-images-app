@@ -1,40 +1,51 @@
-import { Component, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Breed } from 'src/app/models/breed.interface';
-import { MatSelect } from '@angular/material/select';
-import { MatOption } from '@angular/material/core';
-import { FormControl } from '@angular/forms';
+import { CatsService } from 'src/app/services/cats.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss']
 })
-export class FiltersComponent {
+export class FiltersComponent implements OnInit {
 
-  @ViewChild('select') select!: MatSelect;
-  @Input() breeds!: Breed[];
+  breeds: Breed[] = [];
+  breedsSelected: Breed[] = [];
+  limits: number[] = [10, 20, 40];
 
-  filters = new FormControl();
-  selectedBreeds: string[] = [];
-  allSelected = false;
+  @Output() breedsEmitter = new EventEmitter<Breed[]>();
+  @Output() allBreedsEmitter = new EventEmitter<string>();
+  @Output() limitSelected = new EventEmitter<number>();
+  private destroy: Subject<boolean> = new Subject<boolean>();
 
-  @Output() filtersSelected = new EventEmitter<string[]>();
+  constructor(private catService: CatsService) {}
 
-  toggleAllSelection(): void {
-    this.allSelected = !this.allSelected;
-    this.select.options.forEach((item: MatOption) => this.allSelected ? item.select() : item.deselect());
+  ngOnInit(): void {
+    this.getBreeds();
   }
 
-  toggleOneOption(): void {
-    const optionAmount = this.breeds.length + 1;
-    if(this.filters.value.length === optionAmount) {
-      this.allSelected = true;
-      this.select.options.first.select();
+  getBreeds(): void {
+    this.catService.getBreeds().pipe(takeUntil(this.destroy)).subscribe((res: Breed[]) => {
+      this.breeds = res;
+    })
+  }
+
+  setBreeds(breedsSelected: Breed[]): void {
+    if(breedsSelected.length) {
+      this.breedsSelected = breedsSelected;
+      this.breedsEmitter.emit(breedsSelected);
     } else {
-      this.allSelected = false;
-      this.select.options.first.deselect();
-      this.filtersSelected.emit(this.filters.value);
+      this.allBreedsEmitter.emit();
     }
+  }
+
+  setLimit(newLimit: number): void {
+    this.limitSelected.emit(newLimit);
+  }
+
+  removeBreed(breedId: string): void {
+    this.breedsSelected = this.breedsSelected.filter((item: Breed) => item.id !== breedId);
   }
 
 }

@@ -1,0 +1,26 @@
+<!-- <mat-select #select [formControl]="filtersControl" placeholder="Breeds" multiple>
+    <mat-option #allSelected (click)="toggleAllSelection()" value="all">Select All</mat-option>
+    <mat-option *ngFor="let breed of breeds" [value]="breed.id" (click)="toggleOneOption()">
+        {{ breed.name }}
+    </mat-option>
+</mat-select> -->
+<mat-form-field *ngIf="breeds" class="breeds-filters" appearance="outline" floatLabel="always">
+    <mat-label>Select Breeds</mat-label>
+    <input
+        type="text"
+        matInput
+        placeholder="Select breed" 
+        [formControl]="filtersControl"
+        [matAutocomplete]="auto"
+        (keyup)="filterPredictions()"
+    />
+    <button *ngIf="filtersControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="filtersControl.reset()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option value="all" (click)="selectAll()">All Breeds</mat-option>
+        <mat-option *ngFor="let breed of filteredBreeds || breeds" [value]="breed" (click)="selectBreed()">
+            <mat-checkbox [checked]="isChecked(breed)">{{ breed.name }}</mat-checkbox>
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

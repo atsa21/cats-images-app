@@ -1,0 +1,7 @@
+<mat-form-field appearance="outline" floatLabel="always">
+    <mat-select [formControl]="limitControl" placeholder="Limits">
+        <mat-option *ngFor="let limit of limits" [value]="limit" (click)="selectLimit()">
+            {{ limit }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

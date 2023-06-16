@@ -1,1 +1,3 @@
-<p>cats-card works!</p>
+<div *ngIf="cat && cat.url" class="card">
+    <img class="cat-image" [src]="cat.url"/>
+</div>
