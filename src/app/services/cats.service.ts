@@ -26,7 +26,8 @@ export class CatsService {
   getAllCats(limit: number): Observable<Cat[]> {
     const headers = this.headers;
     let query_params = {
-      limit: limit
+      limit: limit,
+      has_breeds: 1
     }
     return this.http.get<Cat[]>(`${this.url}images/search`, {headers, params: query_params});
   }
@@ -35,6 +36,7 @@ export class CatsService {
     const headers = this.headers;
     let query_params = {
       limit: limit,
+      has_breeds: 1,
       breed_ids: selectedBreeds.join()
     }
     return this.http.get<Cat[]>(`${this.url}images/search`, {headers, params: query_params});

@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -38,7 +40,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

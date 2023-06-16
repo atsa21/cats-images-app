@@ -19,7 +19,7 @@ export class CatState {
     constructor(private catsService: CatsService) { }
 
     @Selector()
-    static selectStateData(state: CatStateModel){
+    static selectStateData(state: CatStateModel): CatStateModel {
         return { cats: state.cats, isLoading: state.isLoading };
     }
 

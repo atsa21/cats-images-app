@@ -20,6 +20,7 @@ import { HeaderComponent } from './components/main/header/header.component';
 import { FiltersComponent } from './components/main/filters/filters.component';
 import { BreedsFiltersComponent } from './components/main/filters/breeds-filters/breeds-filters.component';
 import { LimitFiltersComponent } from './components/main/filters/limit-filters/limit-filters.component';
+import { CatDialogComponent } from './components/main/cat-dialog/cat-dialog.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { LimitFiltersComponent } from './components/main/filters/limit-filters/l
     HeaderComponent,
     FiltersComponent,
     BreedsFiltersComponent,
-    LimitFiltersComponent
+    LimitFiltersComponent,
+    CatDialogComponent
   ],
   imports: [
     BrowserModule,

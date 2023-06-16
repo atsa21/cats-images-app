@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Subject, takeUntil, Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import { Cat } from 'src/app/models/cat.interface';
+import { Cat, CatStateModel } from 'src/app/models/cat.interface';
 import { Breed } from 'src/app/models/breed.interface';
 import { CatState } from 'src/app/states/cat.state';
 import { GetAllCats, GetCatsByBreed } from 'src/app/actions/cats.action';
@@ -50,7 +50,7 @@ export class MainComponent implements OnInit {
 
   getAllCats(): void {
     this.store.dispatch(new GetAllCats({ limit: this.limit }));
-    this.cats$.pipe(takeUntil(this.destroy)).subscribe(data => {
+    this.cats$.pipe(takeUntil(this.destroy)).subscribe((data: CatStateModel) => {
       this.isLoading = data.isLoading;
       this.cats = data.cats;
     });
@@ -60,7 +60,7 @@ export class MainComponent implements OnInit {
     if(this.breedsSelected) {
       const breedsSelectedIds = this.breedsSelected.map(el => el.id);
       this.store.dispatch(new GetCatsByBreed({ limit: this.limit, breeds: breedsSelectedIds }));
-      this.cats$.pipe(takeUntil(this.destroy)).subscribe(data => {
+      this.cats$.pipe(takeUntil(this.destroy)).subscribe((data: CatStateModel) => {
         this.isLoading = data.isLoading;
         this.cats = data.cats;
       });
