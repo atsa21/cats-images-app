@@ -9,3 +9,17 @@
         object-fit: cover;
     }
 }
+
+@media (max-width: 540px) {
+    .card {
+        display: flex;
+        height: 220px;
+        width: 100vw;
+    
+        .cat-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}

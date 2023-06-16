@@ -12,7 +12,7 @@
 .filters-selected-box {
     display: flex;
     justify-content: flex-end;
-    padding-bottom: 24px;
+    padding-bottom: 18px;
 
     .filter-buttons {
         display: flex;
@@ -20,6 +20,20 @@
 
         .filt-btn {
             padding: 12px;
+        }
+    }
+}
+
+@media (max-width: 540px) {
+    .filters-box {
+        justify-content: space-between;
+
+        :first-child {
+            width: 70%;
+        }
+
+        :last-child {
+            width: 30%;
         }
     }
 }

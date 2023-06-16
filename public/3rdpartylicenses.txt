@@ -96,6 +96,15 @@ Apache-2.0
 @firebase/util
 Apache-2.0
 
+@ngxs/form-plugin
+MIT
+
+@ngxs/logger-plugin
+MIT
+
+@ngxs/store
+MIT
+
 firebase/analytics
 
 firebase/app

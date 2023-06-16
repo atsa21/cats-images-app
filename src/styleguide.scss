@@ -53,3 +53,7 @@ $cats-images-app-theme: mat.define-light-theme((
 .breeds-chip {
     background-color: var(--accent) !important;
 }
+
+.mat-mdc-form-field-subscript-wrapper {
+    height: 12px;
+}
