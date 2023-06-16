@@ -34,11 +34,15 @@ export class BreedsFiltersComponent {
 
   removeValue(): void {
     this.filtersControl.reset();
-    this.filteredBreeds = this.breeds;
+    if(this.breeds) {
+      this.filteredBreeds = this.breeds;
+    }
   }
 
   filterPredictions(): void {
-    this.filteredBreeds = this.breeds.filter((item: Breed) => item.name.toLowerCase().includes(this.filtersControl.value));
+    if(this.breeds) {
+      this.filteredBreeds = this.breeds.filter((item: Breed) => item.name.toLowerCase().includes(this.filtersControl.value));
+    }
   }
 
   selectAll(): void {

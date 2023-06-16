@@ -31,11 +31,11 @@ export class CatsService {
     return this.http.get<Cat[]>(`${this.url}images/search`, {headers, params: query_params});
   }
 
-  getCatsByBreeds(limit: number, selectedBreed: string[]): Observable<Cat[]> {
+  getCatsByBreeds(limit: number, selectedBreeds: string[]): Observable<Cat[]> {
     const headers = this.headers;
     let query_params = {
       limit: limit,
-      breed_ids: selectedBreed.join()
+      breed_ids: selectedBreeds.join()
     }
     return this.http.get<Cat[]>(`${this.url}images/search`, {headers, params: query_params});
   }

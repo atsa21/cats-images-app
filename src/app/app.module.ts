@@ -8,6 +8,11 @@ import { environment } from 'src/environments/environment';
 import { SharedModule } from './shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { BreedState } from './states/breed.state';
+import { CatState } from './states/cat.state';
 
 import { MainComponent } from './components/main/main.component';
 import { CatsCardComponent } from './components/main/cats-card/cats-card.component';
@@ -15,6 +20,7 @@ import { HeaderComponent } from './components/main/header/header.component';
 import { FiltersComponent } from './components/main/filters/filters.component';
 import { BreedsFiltersComponent } from './components/main/filters/breeds-filters/breeds-filters.component';
 import { LimitFiltersComponent } from './components/main/filters/limit-filters/limit-filters.component';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +38,9 @@ import { LimitFiltersComponent } from './components/main/filters/limit-filters/l
     BrowserAnimationsModule,
     HttpClientModule,
     SharedModule,
+    NgxsModule.forRoot([BreedState, CatState]),
+    NgxsFormPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],

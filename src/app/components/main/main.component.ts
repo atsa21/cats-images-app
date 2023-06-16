@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CatsService } from 'src/app/services/cats.service';
 
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil, Observable } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
 import { Cat } from 'src/app/models/cat.interface';
 import { Breed } from 'src/app/models/breed.interface';
+import { CatState } from 'src/app/states/cat.state';
+import { GetAllCats, GetCatsByBreed } from 'src/app/actions/cats.action';
 
 @Component({
   selector: 'app-main',
@@ -17,10 +19,11 @@ export class MainComponent implements OnInit {
   limit = 10;
   breedsSelected: Breed[] | null = null;
   isLoading = false;
+  @Select(CatState.selectStateData) cats$!: Observable<any>;
 
   private destroy: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private catsService: CatsService) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.getAllCats();
@@ -46,21 +49,21 @@ export class MainComponent implements OnInit {
   }
 
   getAllCats(): void {
-    this.isLoading = true;
-    this.catsService.getAllCats(this.limit).pipe(takeUntil(this.destroy)).subscribe((res: any) => {
-      this.cats = res;
-      this.isLoading = false;
-    })
+    this.store.dispatch(new GetAllCats({ limit: this.limit }));
+    this.cats$.pipe(takeUntil(this.destroy)).subscribe(data => {
+      this.isLoading = data.isLoading;
+      this.cats = data.cats;
+    });
   }
 
   getCatsByBreeds() : void {
     if(this.breedsSelected) {
-      this.isLoading = true;
       const breedsSelectedIds = this.breedsSelected.map(el => el.id);
-      this.catsService.getCatsByBreeds(this.limit, breedsSelectedIds).pipe(takeUntil(this.destroy)).subscribe((res: any) => {
-        this.cats = res;
-        this.isLoading = false;
-      })
+      this.store.dispatch(new GetCatsByBreed({ limit: this.limit, breeds: breedsSelectedIds }));
+      this.cats$.pipe(takeUntil(this.destroy)).subscribe(data => {
+        this.isLoading = data.isLoading;
+        this.cats = data.cats;
+      });
     }
   }
 }
